@@ -1,1 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor Elegante - Restaurante Gourmet</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background-color: #f8f5f2;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header y Navegación */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e67e22;
+        }
+
+        .logo span {
+            color: #f1c40f;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            color: #e67e22;
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 8rem 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #e67e22;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #d35400;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Secciones */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #e67e22;
+            margin: 10px auto;
+        }
+
+        /* Especialidades */
+        .especialidades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .especialidad {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .especialidad:hover {
+            transform: translateY(-10px);
+        }
+
+        .especialidad img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .especialidad-content {
+            padding: 1.5rem;
+        }
+
+        .especialidad h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .precio {
+            color: #e67e22;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Ofertas */
+        .ofertas {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .ofertas .section-title {
+            color: white;
+        }
+
+        .ofertas .section-title:after {
+            background-color: #f1c40f;
+        }
+
+        .ofertas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .oferta {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .oferta h3 {
+            color: #f1c40f;
+            margin-bottom: 1rem;
+        }
+
+        .oferta .precio {
+            color: #f1c40f;
+            font-size: 1.5rem;
+        }
+
+        .precio-anterior {
+            text-decoration: line-through;
+            color: #bdc3c7;
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #e67e22;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ecf0f1;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #e67e22;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+
+        /* Páginas internas */
+        .pagina {
+            display: none;
+            padding: 2rem 0;
+        }
+
+        .pagina.activa {
+            display: block;
+        }
+
+        /* Menú */
+        .categoria-menu {
+            margin-bottom: 3rem;
+        }
+
+        .categoria-menu h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plato {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .plato-info h4 {
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+
+        .plato-info p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .plato-precio {
+            color: #e67e22;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Contacto */
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .info-contacto h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item i {
+            color: #e67e22;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        .form-contacto input, .form-contacto textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-contacto textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #2c3e50;
+                padding: 1rem 0;
+            }
+
+            nav ul.mostrar {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0;
+                text-align: center;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 10px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">Sabor <span>Elegante</span></div>
+            <div class="menu-toggle">☰</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-target="inicio">Inicio</a></li>
+                    <li><a href="#" class="nav-link" data-target="menu">Menú</a></li>
+                    <li><a href="#" class="nav-link" data-target="ofertas">Ofertas</a></li>
+                    <li><a href="#" class="nav-link" data-target="contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Página de Inicio -->
+    <section id="inicio" class="pagina activa">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="container">
+                <h1>Bienvenidos a Sabor Elegante</h1>
+                <p>Descubre una experiencia gastronómica única donde la tradición que se encuentra </p>
+                <a href="#" class="btn nav-link" data-target="menu">Ver Menú</a>
+            </div>
+        </div>
+
+        <!-- Especialidades -->
+        <div class="container">
+            <h2 class="section-title">Nuestras Especialidades</h2>
+            <div class="especialidades">
+                <div class="especialidad">
+                    <img src="imag/risoto.jpg" alt="Risotto de Champiñones">
+                    <div class="especialidad-content">
+                        <h3>Risotto de Champiñones</h3>
+                        <p>Arroz cremoso con champiñones silvestres y queso parmesano.</p>
+                        <div class="precio">$18.99</div>
+                    </div>
+                </div>
+                <div class="especialidad">
+                    <img src="imag/filete.jpg" alt="Filete Mignon">
+                    <div class="especialidad-content">
+                        <h3>Filete Mignon</h3>
+                        <p>Tierno corte de res con salsa de vino tinto y guarnición de vegetales.</p>
+                        <div class="precio">$24.99</div>
+                    </div>
+                </div>
+                <div class="especialidad">
+                    <img src="imag/salmon.jpg" alt="Salmón a la Parrilla">
+                    <div class="especialidad-content">
+                        <h3>Salmón a la Parrilla</h3>
+                        <p>Salmón fresco con costra de hierbas y salsa de limón.</p>
+                        <div class="precio">$21.99</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Página de Menú -->
+    <section id="menu" class="pagina">
+        <div class="container">
+            <h2 class="section-title">Nuestro Menú</h2>
+            
+            <div class="categoria-menu">
+                <h3>Entradas</h3>
+                <div class="plato">
+                    <div class="plato-info">
+                        <h4>Bruschetta Clásica</h4>
+                        <p>Pan tostado con tomate, albahaca y aceite de oliva</p>
+                    </div>
+                    <div class="plato-precio">$8.99</div>
+                </div>
+                <div class="plato">
+                    <div class="plato-info">
+                        <h4>Carpaccio de Res</h4>
+                        <p>Finas láminas de res con rúcula y queso parmesano</p>
+                    </div>
+                    <div class="plato-precio">$12.99</div>
+                </div>
+                <div class="plato">
+                    <div class="plato-info">
+                        <h4>Calamares Fritos</h4>
+                        <p>Calamares crujientes con salsa tártara</p>
+                    </div>
+                    <div class="plato-precio">$10.99</div>
+                </div>
+            </div>
+            
+            <div class="categoria-menu">
+                <h3>Platos Principales</h3>
+                <div class="plato">
+                    <div class="plato-info">
+                        <h4>Pasta Carbonara</h4>
+                        <p>Spaghetti con salsa cremosa de huevo, pancetta y queso</p>
+                    </div>
+                    <div class="plato-precio">$16.99</div>
+                </div>
+                <div class="plato">
+                    <div class="plato-info">
+                        <h4>Pollo Marsala</h4>
+                        <p>Pechuga de pollo con salsa de vino Marsala y champiñones</p>
+                    </div>
+                    <div class="plato-precio">$18.99</div>
+                </div>
+                <div class="plato">
+                    <div class="plato-info">
+                        <h4>Risotto de Mariscos</h4>
+                        <p>Arroz cremoso con camarones, calamares y mejillones</p>
+                    </div>
+                    <div class="plato-precio">$22.99</div>
+                </div>
+            </div>
+            
+            <div class="categoria-menu">
+                <h3>Postres</h3>
+                <div class="plato">
+                    <div class="plato-info">
+                        <h4>Tiramisú Clásico</h4>
+                        <p>Postre italiano con café, cacao y mascarpone</p>
+                    </div>
+                    <div class="plato-precio">$7.99</div>
+                </div>
+                <div class="plato">
+                    <div class="plato-info">
+                        <h4>Crème Brûlée</h4>
+                        <p>Crema de vainilla con caramelo crujiente</p>
+                    </div>
+                    <div class="plato-precio">$8.99</div>
+                </div>
+                <div class="plato">
+                    <div class="plato-info">
+                        <h4>Pastel de Chocolate</h4>
+                        <p>Torta de chocolate intenso con salsa de frambuesa</p>
+                    </div>
+                    <div class="plato-precio">$9.99</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Página de Ofertas -->
+    <section id="ofertas" class="pagina">
+        <div class="ofertas">
+            <div class="container">
+                <h2 class="section-title">Ofertas Especiales</h2>
+                <div class="ofertas-grid">
+                    <div class="oferta">
+                        <h3>Menú Ejecutivo</h3>
+                        <p>Incluye entrada, plato principal y postre</p>
+                        <div class="precio"><span class="precio-anterior">$25.99</span> $19.99</div>
+                        <p>Disponible de lunes a viernes de 12:00 a 15:00</p>
+                    </div>
+                    <div class="oferta">
+                        <h3>Noche de Vinos</h3>
+                        <p>Botella de vino tinto o blanco con la compra de dos platos principales</p>
+                        <div class="precio">50% de descuento</div>
+                        <p>Todos los miércoles después de las 18:00</p>
+                    </div>
+                    <div class="oferta">
+                        <h3>Brunch Dominical</h3>
+                        <p>Buffet completo con opciones dulces y saladas</p>
+                        <div class="precio"><span class="precio-anterior">$29.99</span> $24.99</div>
+                        <p>Domingos de 10:00 a 14:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Página de Contacto -->
+    <section id="contacto" class="pagina">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contacto-grid">
+                <div class="info-contacto">
+                    <h3>Información de Contacto</h3>
+                    <div class="info-item">
+                        <i>📍</i>
+                        <div>
+                            <p><strong>Dirección:</strong></p>
+                            <p>Av. Gourmet 123, Ciudad Elegante</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i>📞</i>
+                        <div>
+                            <p><strong>Teléfono:</strong></p>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i>✉️</i>
+                        <div>
+                            <p><strong>Email:</strong></p>
+                            <p>info@saborelegante.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i>🕒</i>
+                        <div>
+                            <p><strong>Horarios:</strong></p>
+                            <p>Lun-Vie: 11:00 - 22:00</p>
+                            <p>Sab-Dom: 10:00 - 23:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-contacto">
+                    <h3>Envíanos un Mensaje</h3>
+                    <form>
+                        <input type="text" placeholder="Tu nombre" required>
+                        <input type="email" placeholder="Tu email" required>
+                        <input type="text" placeholder="Asunto">
+                        <textarea placeholder="Tu mensaje" required></textarea>
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sabor Elegante</h3>
+                    <p>Ofrecemos una experiencia gastronómica única con ingredientes frescos,recetas innovadoras, comodo y accesible.......Te esperamos!!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <a href="#" class="nav-link" data-target="inicio">Inicio</a>
+                    <a href="#" class="nav-link" data-target="menu">Menú</a>
+                    <a href="#" class="nav-link" data-target="ofertas">Ofertas</a>
+                    <a href="#" class="nav-link" data-target="contacto">Contacto</a>
+                </div>
+              
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Sabor Elegante. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navegación entre páginas
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('data-target');
+                
+                // Ocultar todas las páginas
+                document.querySelectorAll('.pagina').forEach(page => {
+                    page.classList.remove('activa');
+                });
+                
+                // Mostrar la página seleccionada
+                document.getElementById(target).classList.add('activa');
+                
+                // Cerrar menú móvil si está abierto
+                document.querySelector('nav ul').classList.remove('mostrar');
+            });
+        });
+
+        // Menú móvil
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('mostrar');
+        });
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('nav ul').classList.remove('mostrar');
+            });
+        });
+    </script>
+</body>
+</html>
