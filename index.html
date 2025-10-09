@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sabor Elegante - Restaurante Gourmet</title>
     <style>
-        /* Estilos generales */
         * {
             margin: 0;
             padding: 0;
@@ -26,7 +25,6 @@
             padding: 0 15px;
         }
 
-        /* Header y Navegación */
         header {
             background-color: #2c3e50;
             color: white;
@@ -82,7 +80,6 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
@@ -124,7 +121,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* Secciones */
         section {
             padding: 4rem 0;
         }
@@ -145,7 +141,6 @@
             margin: 10px auto;
         }
 
-        /* Especialidades */
         .especialidades {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -186,7 +181,6 @@
             margin: 0.5rem 0;
         }
 
-        /* Ofertas */
         .ofertas {
             background-color: #2c3e50;
             color: white;
@@ -230,7 +224,6 @@
             margin-right: 10px;
         }
 
-        /* Footer */
         footer {
             background-color: #2c3e50;
             color: white;
@@ -269,7 +262,6 @@
             color: #bdc3c7;
         }
 
-        /* Páginas internas */
         .pagina {
             display: none;
             padding: 2rem 0;
@@ -279,7 +271,6 @@
             display: block;
         }
 
-        /* Menú */
         .categoria-menu {
             margin-bottom: 3rem;
         }
@@ -289,33 +280,69 @@
             border-bottom: 2px solid #e67e22;
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
+            font-size: 1.4rem;
         }
 
         .plato {
             display: flex;
-            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 1px dashed #ddd;
+            gap: 15px;
+        }
+
+        .plato-imagen {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .plato-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .plato-imagen:hover img {
+            transform: scale(1.1);
+        }
+
+        .plato-contenido {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .plato-info {
+            flex: 1;
         }
 
         .plato-info h4 {
             color: #2c3e50;
             margin-bottom: 0.3rem;
+            font-size: 1.1rem;
         }
 
         .plato-info p {
             color: #7f8c8d;
             font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
 
         .plato-precio {
             color: #e67e22;
             font-weight: bold;
             font-size: 1.1rem;
+            white-space: nowrap;
+            margin-left: 15px;
         }
 
-        /* Contacto */
         .contacto-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -354,8 +381,28 @@
             resize: vertical;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
+            .plato {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .plato-imagen {
+                width: 100%;
+                height: 120px;
+                margin-bottom: 10px;
+            }
+
+            .plato-contenido {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .plato-precio {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
             .menu-toggle {
                 display: block;
             }
@@ -393,10 +440,15 @@
                 font-size: 1rem;
             }
         }
+
+        @media (max-width: 480px) {
+            .plato-imagen {
+                height: 100px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container header-content">
             <div class="logo">Sabor <span>Elegante</span></div>
@@ -412,23 +464,20 @@
         </div>
     </header>
 
-    <!-- Página de Inicio -->
     <section id="inicio" class="pagina activa">
-        <!-- Hero Section -->
         <div class="hero">
             <div class="container">
                 <h1>Bienvenidos a Sabor Elegante</h1>
-                <p>Descubre una experiencia gastronómica única donde la tradición que se encuentra </p>
+                <p>Descubre una experiencia gastronómica única donde la tradición se encuentra con la innovación</p>
                 <a href="#" class="btn nav-link" data-target="menu">Ver Menú</a>
             </div>
         </div>
 
-        <!-- Especialidades -->
         <div class="container">
             <h2 class="section-title">Nuestras Especialidades</h2>
             <div class="especialidades">
                 <div class="especialidad">
-                    <img src="imag/risoto.jpg" alt="Risotto de Champiñones">
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Risotto de Champiñones">
                     <div class="especialidad-content">
                         <h3>Risotto de Champiñones</h3>
                         <p>Arroz cremoso con champiñones silvestres y queso parmesano.</p>
@@ -436,7 +485,7 @@
                     </div>
                 </div>
                 <div class="especialidad">
-                    <img src="imag/filete.jpg" alt="Filete Mignon">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Filete Mignon">
                     <div class="especialidad-content">
                         <h3>Filete Mignon</h3>
                         <p>Tierno corte de res con salsa de vino tinto y guarnición de vegetales.</p>
@@ -444,7 +493,7 @@
                     </div>
                 </div>
                 <div class="especialidad">
-                    <img src="imag/salmon.jpg" alt="Salmón a la Parrilla">
+                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Salmón a la Parrilla">
                     <div class="especialidad-content">
                         <h3>Salmón a la Parrilla</h3>
                         <p>Salmón fresco con costra de hierbas y salsa de limón.</p>
@@ -455,89 +504,132 @@
         </div>
     </section>
 
-    <!-- Página de Menú -->
     <section id="menu" class="pagina">
         <div class="container">
             <h2 class="section-title">Nuestro Menú</h2>
             
             <div class="categoria-menu">
-                <h3>Entradas</h3>
+                <h3>🍽️ Entradas</h3>
                 <div class="plato">
-                    <div class="plato-info">
-                        <h4>Bruschetta Clásica</h4>
-                        <p>Pan tostado con tomate, albahaca y aceite de oliva</p>
+                    <div class="plato-imagen">
+                        <img src="https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Bruschetta Clásica">
                     </div>
-                    <div class="plato-precio">$8.99</div>
+                    <div class="plato-contenido">
+                        <div class="plato-info">
+                            <h4>Bruschetta Clásica</h4>
+                            <p>Pan tostado con tomate fresco, albahaca y aceite de oliva extra virgen</p>
+                        </div>
+                        <div class="plato-precio">$8.99</div>
+                    </div>
                 </div>
                 <div class="plato">
-                    <div class="plato-info">
-                        <h4>Carpaccio de Res</h4>
-                        <p>Finas láminas de res con rúcula y queso parmesano</p>
+                    <div class="plato-imagen">
+                        <img src="https://images.unsplash.com/photo-1606755962770-7365bc80c313?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Carpaccio de Res">
                     </div>
-                    <div class="plato-precio">$12.99</div>
+                    <div class="plato-contenido">
+                        <div class="plato-info">
+                            <h4>Carpaccio de Res</h4>
+                            <p>Finas láminas de res con rúcula, queso parmesano y alcaparras</p>
+                        </div>
+                        <div class="plato-precio">$12.99</div>
+                    </div>
                 </div>
                 <div class="plato">
-                    <div class="plato-info">
-                        <h4>Calamares Fritos</h4>
-                        <p>Calamares crujientes con salsa tártara</p>
+                    <div class="plato-imagen">
+                        <img src="https://images.unsplash.com/photo-1559715745-e1b33a271c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Calamares Fritos">
                     </div>
-                    <div class="plato-precio">$10.99</div>
-                </div>
-            </div>
-            
-            <div class="categoria-menu">
-                <h3>Platos Principales</h3>
-                <div class="plato">
-                    <div class="plato-info">
-                        <h4>Pasta Carbonara</h4>
-                        <p>Spaghetti con salsa cremosa de huevo, pancetta y queso</p>
+                    <div class="plato-contenido">
+                        <div class="plato-info">
+                            <h4>Calamares Fritos</h4>
+                            <p>Calamares crujientes con salsa tártara casera y limón</p>
+                        </div>
+                        <div class="plato-precio">$10.99</div>
                     </div>
-                    <div class="plato-precio">$16.99</div>
-                </div>
-                <div class="plato">
-                    <div class="plato-info">
-                        <h4>Pollo Marsala</h4>
-                        <p>Pechuga de pollo con salsa de vino Marsala y champiñones</p>
-                    </div>
-                    <div class="plato-precio">$18.99</div>
-                </div>
-                <div class="plato">
-                    <div class="plato-info">
-                        <h4>Risotto de Mariscos</h4>
-                        <p>Arroz cremoso con camarones, calamares y mejillones</p>
-                    </div>
-                    <div class="plato-precio">$22.99</div>
                 </div>
             </div>
             
             <div class="categoria-menu">
-                <h3>Postres</h3>
+                <h3>🍝 Platos Principales</h3>
                 <div class="plato">
-                    <div class="plato-info">
-                        <h4>Tiramisú Clásico</h4>
-                        <p>Postre italiano con café, cacao y mascarpone</p>
+                    <div class="plato-imagen">
+                        <img src="https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Pasta Carbonara">
                     </div>
-                    <div class="plato-precio">$7.99</div>
+                    <div class="plato-contenido">
+                        <div class="plato-info">
+                            <h4>Pasta Carbonara</h4>
+                            <p>Spaghetti con salsa cremosa de huevo, pancetta crocante y queso pecorino</p>
+                        </div>
+                        <div class="plato-precio">$16.99</div>
+                    </div>
                 </div>
                 <div class="plato">
-                    <div class="plato-info">
-                        <h4>Crème Brûlée</h4>
-                        <p>Crema de vainilla con caramelo crujiente</p>
+                    <div class="plato-imagen">
+                        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Pollo Marsala">
                     </div>
-                    <div class="plato-precio">$8.99</div>
+                    <div class="plato-contenido">
+                        <div class="plato-info">
+                            <h4>Pollo Marsala</h4>
+                            <p>Pechuga de pollo con salsa de vino Marsala y champiñones salteados</p>
+                        </div>
+                        <div class="plato-precio">$18.99</div>
+                    </div>
                 </div>
                 <div class="plato">
-                    <div class="plato-info">
-                        <h4>Pastel de Chocolate</h4>
-                        <p>Torta de chocolate intenso con salsa de frambuesa</p>
+                    <div class="plato-imagen">
+                        <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Risotto de Mariscos">
                     </div>
-                    <div class="plato-precio">$9.99</div>
+                    <div class="plato-contenido">
+                        <div class="plato-info">
+                            <h4>Risotto de Mariscos</h4>
+                            <p>Arroz cremoso con camarones, calamares, mejillones y azafrán</p>
+                        </div>
+                        <div class="plato-precio">$22.99</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="categoria-menu">
+                <h3>🍰 Postres</h3>
+                <div class="plato">
+                    <div class="plato-imagen">
+                        <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Tiramisú Clásico">
+                    </div>
+                    <div class="plato-contenido">
+                        <div class="plato-info">
+                            <h4>Tiramisú Clásico</h4>
+                            <p>Postre italiano con café espresso, cacao en polvo y mascarpone</p>
+                        </div>
+                        <div class="plato-precio">$7.99</div>
+                    </div>
+                </div>
+                <div class="plato">
+                    <div class="plato-imagen">
+                        <img src="https://images.unsplash.com/photo-1557683304-673a23048d34?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Crème Brûlée">
+                    </div>
+                    <div class="plato-contenido">
+                        <div class="plato-info">
+                            <h4>Crème Brûlée</h4>
+                            <p>Crema de vainilla con caramelo crujiente y esencia de naranja</p>
+                        </div>
+                        <div class="plato-precio">$8.99</div>
+                    </div>
+                </div>
+                <div class="plato">
+                    <div class="plato-imagen">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Pastel de Chocolate">
+                    </div>
+                    <div class="plato-contenido">
+                        <div class="plato-info">
+                            <h4>Pastel de Chocolate</h4>
+                            <p>Torta de chocolate intenso con salsa de frambuesa y helado de vainilla</p>
+                        </div>
+                        <div class="plato-precio">$9.99</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Página de Ofertas -->
     <section id="ofertas" class="pagina">
         <div class="ofertas">
             <div class="container">
@@ -566,7 +658,6 @@
         </div>
     </section>
 
-    <!-- Página de Contacto -->
     <section id="contacto" class="pagina">
         <div class="container">
             <h2 class="section-title">Contáctanos</h2>
@@ -617,55 +708,53 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Sabor Elegante</h3>
-                    <p>Ofrecemos una experiencia gastronómica única con ingredientes frescos,recetas innovadoras, comodo y accesible.......Te esperamos!!</p>
+                    <p>Ofrecemos una experiencia gastronómica única con ingredientes frescos y recetas innovadoras.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Enlaces</h3>
+                    <h3>Enlaces Rápidos</h3>
                     <a href="#" class="nav-link" data-target="inicio">Inicio</a>
                     <a href="#" class="nav-link" data-target="menu">Menú</a>
                     <a href="#" class="nav-link" data-target="ofertas">Ofertas</a>
                     <a href="#" class="nav-link" data-target="contacto">Contacto</a>
                 </div>
-              
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Sabor Elegante. Todos los derechos reservados.</p>
+                <p>&copy; 2023 Sabor Elegante. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Navegación entre páginas
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = this.getAttribute('data-target');
                 
-                // Ocultar todas las páginas
                 document.querySelectorAll('.pagina').forEach(page => {
                     page.classList.remove('activa');
                 });
                 
-                // Mostrar la página seleccionada
                 document.getElementById(target).classList.add('activa');
                 
-                // Cerrar menú móvil si está abierto
                 document.querySelector('nav ul').classList.remove('mostrar');
             });
         });
 
-        // Menú móvil
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('nav ul').classList.toggle('mostrar');
         });
 
-        // Cerrar menú móvil al hacer clic en un enlace
         document.querySelectorAll('nav ul li a').forEach(link => {
             link.addEventListener('click', function() {
                 document.querySelector('nav ul').classList.remove('mostrar');
